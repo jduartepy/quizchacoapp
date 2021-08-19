@@ -1,0 +1,61 @@
+{% extends 'core/base.html'%} {% block title %}Portada{% endblock %}
+{% block background %} {% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
+{% block headers %}
+<h2>El Juego de Preguntas Sobre la Provincia del Chaco</h2>
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto j-box-1">
+        <span class="subheading">Seleccione una categoría de preguntas</span>
+    </div>
+    <div class="col-lg-10 col-md-12 mx-auto j-box-1">
+        <button id="btnCat1" type="button" class="btn btn-outline-primary j-button" onclick="categoriaOnClick('Cultura y Arte', '#btnCat1')">Cultura y Arte</button>
+        <button id="btnCat2" type="button" class="btn btn-outline-secondary j-button" onclick="categoriaOnClick('Historia', '#btnCat2')">Historia</button>
+        <button id="btnCat3" type="button" class="btn btn-outline-success j-button" onclick="categoriaOnClick('Deporte', '#btnCat3')">Deporte</button>
+        <button id="btnCat4" type="button" class="btn btn-outline-danger j-button" onclick="categoriaOnClick('Geografia', '#btnCat4')">Geografía</button>
+        <button id="btnCat5" type="button" class="btn btn-outline-warning j-button" onclick="categoriaOnClick('Economia', '#btnCat5')">Economía</button>
+        <button id="btnCat6" type="button" class="btn btn-outline-info j-button" onclick="categoriaOnClick('Ciencias y Educacion', '#btnCat6')">Ciencias y Educación</button>
+        <button id="btnCat7" type="button" class="btn btn-outline-dark j-button" onclick="categoriaOnClick('Entretenimiento', '#btnCat7')">Entretenimiento</button>
+    </div>
+    <script>
+      function categoriaOnClick(categoria, id) {
+        const url = "{% url 'categoria' %}" + "?categoria="+categoria;
+        fetch(url).then(function(){
+          $(".j-button").removeClass("highlight");
+          $(id).addClass("highlight");
+        })
+      }
+
+    </script>
+    <div class="col-lg-8 col-md-10 mx-auto">
+        <a href="{% url 'juego' %}" class="btn btn-success btn-lg j-button" role="button">Empezar a Jugar</a>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-lg-3 col-md-4 offset-lg-1">
+    <img
+      class="img-fluid avatar"
+      src="{% static 'core/img/tatiana.jpg' %}"
+      alt=""
+    />
+  </div>
+  <div class="col-lg-7 col-md-8">
+    <h2 class="section-heading">Tatiana Shmayluk </h2>
+    <h4>
+      Puntajes Obtenidos
+    </h4>
+    <p>
+      Categoria 1 : 1000 puntos
+    </p>
+    <p>
+      Categoria 2 : 1000 puntos
+    </p>
+    <p>
+      Categoria 3 : 1000 puntos
+    </p>
+    <p>
+      Categoria 4 : 1000 puntos
+    </p>
+  </div>
+</div>
+{% endblock %}
